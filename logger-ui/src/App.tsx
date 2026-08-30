@@ -1,10 +1,17 @@
-import './App.css'
+import "./App.css";
+// import BrowserRouter from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./Login";
 function App() {
   return (
-   <>
-    <h1>Welcome to Logger</h1>
-   </>
-  )
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
 }
 
-export default App
+export default App;
