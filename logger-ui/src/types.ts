@@ -1,3 +1,5 @@
+import type { Dispatch, SetStateAction } from "react";
+
 export interface UserLocation{
     street: {
     number: number;
@@ -14,13 +16,27 @@ export interface UserLocation{
 export interface User{
     "gender": String,
     "name": {
-        "title": String,
-        "first": String,
-        "last": String
+        "title": string,
+        "first": string,
+        "last": string
     },
     "location" : UserLocation
 }
 
 export interface APIResponse{
     results: User[]
+}
+
+export interface FormProps{
+    setIsLogin : Dispatch<SetStateAction<boolean>>
+}
+
+export interface SignUpObject{
+        "parentName":string | null,
+        "password":string | null,
+        "email": string |null
+}
+export interface LoginInObject{
+        "password":string | null,
+        "email": string |null
 }

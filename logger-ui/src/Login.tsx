@@ -1,9 +1,9 @@
 import { useState } from "react";
-import type { FormProps, SignUpObject } from "./types";
+import type { FormProps, LoginInObject, SignUpObject } from "./types";
 import React from "react";
 
 const LoginForm = ({ setIsLogin }: FormProps): React.JSX.Element => {
-    const [loginDetails, setLoginDetails] = useState<SignUpObject>()
+    const [loginDetails, setLoginDetails] = useState<LoginInObject>()
     function setLoginForm(e : React.FormEvent<HTMLFormElement>){
         e.preventDefault()
         const form = new FormData(e.currentTarget)
