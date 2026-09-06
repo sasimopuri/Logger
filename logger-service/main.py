@@ -14,3 +14,21 @@ app= FastAPI(lifespan=lifespan)
 @app.get("/")
 def hello():
     return {"Hello":"Logger"}
+
+
+@app.post("/user")
+def addUser(UserDetails: User, session: Session = Depends(get_session)):
+    try:
+        session.add(UserDetails)
+        session.commit()
+        session.refresh(UserDetails)
+        return {"Message": "Added User Details Successfully", "data":UserDetails}
+    except SQLAlchemyError as e:
+        session.rollback()
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Failed to insert data {e}")
+        # return {"Message": "Failed to insert into user details.", "error":e}
+
+@app.get("/getUser")
+def getUser(session: Session = Depends(get_session)):
+    users = session.exec(select(User)).all()
+    return {"Message":"Fetched successfully", "data":users} 
